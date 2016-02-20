@@ -1,4 +1,4 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.GamePlay;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,6 +6,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+
+import hn.bw.de.eu.eqwl.Helper.ColorHelper;
+import hn.bw.de.eu.eqwl.Helper.DensityPixelHelper;
+import hn.bw.de.eu.eqwl.Helper.Style;
+import hn.bw.de.eu.eqwl.Static.Variables;
 
 /**
  * Created by Oliver on 14.02.2016.

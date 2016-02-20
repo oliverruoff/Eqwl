@@ -1,4 +1,6 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.Calculations;
+
+import hn.bw.de.eu.eqwl.Calculations.Calculation;
 
 /**
  * Created by Oliver on 14.02.2016.

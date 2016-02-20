@@ -1,4 +1,4 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.Helper;
 
 import android.app.AlertDialog;
 import android.content.Context;

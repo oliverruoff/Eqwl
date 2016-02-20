@@ -89,7 +89,7 @@
         android:textColor="#FFFFFF"
         android:textSize="40sp" />
 
-    <hn.bw.de.eu.eqwl.TimeView
+    <hn.bw.de.eu.eqwl.GamePlay.TimeView
         android:id="@+id/timeView"
         android:layout_width="80dp"
         android:layout_height="80dp"

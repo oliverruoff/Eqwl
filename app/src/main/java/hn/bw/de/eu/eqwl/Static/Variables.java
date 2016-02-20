@@ -1,9 +1,11 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.Static;
 
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import hn.bw.de.eu.eqwl.Calculations.Task;
+import hn.bw.de.eu.eqwl.Helper.Style;
 
 /**
  * Created by Oliver on 14.02.2016.

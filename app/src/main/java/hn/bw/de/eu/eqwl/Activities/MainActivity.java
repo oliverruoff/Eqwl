@@ -1,4 +1,4 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.Activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -10,6 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import hn.bw.de.eu.eqwl.GamePlay.GameLoop;
+import hn.bw.de.eu.eqwl.R;
+import hn.bw.de.eu.eqwl.Static.SaveNLoad;
+import hn.bw.de.eu.eqwl.Helper.Style;
+import hn.bw.de.eu.eqwl.Static.Variables;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 

@@ -1,8 +1,16 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.GamePlay;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+
+import hn.bw.de.eu.eqwl.Activities.SettingsActivity;
+import hn.bw.de.eu.eqwl.Calculations.CalculationBuilder;
+import hn.bw.de.eu.eqwl.Calculations.Task;
+import hn.bw.de.eu.eqwl.Helper.RandomNumberHelper;
+import hn.bw.de.eu.eqwl.Helper.Style;
+import hn.bw.de.eu.eqwl.R;
+import hn.bw.de.eu.eqwl.Static.Variables;
 
 /**
  * Created by Oliver on 14.02.2016.
@@ -16,7 +24,7 @@ public class GameLoop implements View.OnClickListener {
 
     public GameLoop(Context context) {
         this.context = context;
-        style = new Style(context,Variables.MAINLAYOUT);
+        style = new Style(context, Variables.MAINLAYOUT);
     }
 
     public void showNewTask() {

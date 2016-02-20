@@ -1,6 +1,9 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.Calculations;
 
 import android.util.Log;
+
+import hn.bw.de.eu.eqwl.Helper.RandomNumberHelper;
+import hn.bw.de.eu.eqwl.Static.Variables;
 
 /**
  * Created by Oliver on 17.02.2016.

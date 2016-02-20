@@ -1,4 +1,4 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.Activities;
 
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import hn.bw.de.eu.eqwl.Helper.HSVColorPickerDialog;
+import hn.bw.de.eu.eqwl.R;
+import hn.bw.de.eu.eqwl.Static.SaveNLoad;
+import hn.bw.de.eu.eqwl.Helper.Style;
+import hn.bw.de.eu.eqwl.Static.Variables;
 
 
 public class SettingsActivity extends ActionBarActivity implements View.OnClickListener, HSVColorPickerDialog.OnColorSelectedListener {

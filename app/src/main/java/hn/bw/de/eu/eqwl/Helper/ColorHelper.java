@@ -1,4 +1,4 @@
-package hn.bw.de.eu.eqwl;
+package hn.bw.de.eu.eqwl.Helper;
 
 /**
  * Created by Oliver on 14.02.2016.
