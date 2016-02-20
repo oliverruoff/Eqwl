@@ -2,6 +2,7 @@ package hn.bw.de.eu.eqwl.Activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Menu;
@@ -33,9 +34,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setListener();
         style = new Style(this, Variables.MAINLAYOUT);
         style.setColors(getWindow());
-        style.fadeInButtons();
-        style.animateTaskIn();
-
     }
 
     private void prepareSaveNLoad() {
@@ -54,6 +52,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         style.setColors(getWindow());
         Variables.CALC_ONE_VIEW.setText("Equal...");
         Variables.CALC_TWO_VIEW.setText("Or Not?");
+        style.fadeInButtons();
+        style.animateTaskIn();
     }
 
     private void setListener() {
@@ -65,13 +65,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void initVariables() {
+        Typeface font = Typeface.createFromAsset(getAssets(), "DejaVuSans.ttf");
         Variables.MAINLAYOUT = (RelativeLayout) findViewById(R.id.mainLayout);
         Variables.CALC_ONE_VIEW = (TextView) findViewById(R.id.calcOne);
         Variables.CALC_TWO_VIEW = (TextView) findViewById(R.id.calcTwo);
         Variables.SCORE_VIEW = (TextView) findViewById(R.id.scoreTextView);
         Variables.AGAIN_BUTTON = (Button) findViewById(R.id.againButton);
+        Variables.AGAIN_BUTTON.setTypeface(font);
+        Variables.AGAIN_BUTTON.setText("\u27F2");
         Variables.SETTINGS_BUTTON = (Button) findViewById(R.id.settingsButton);
+        Variables.SETTINGS_BUTTON.setTypeface(font);
+        Variables.SETTINGS_BUTTON.setText("\u2699");
         Variables.LEADER_BOARD_BUTTON = (Button) findViewById(R.id.leaderBoardButton);
+        Variables.LEADER_BOARD_BUTTON.setTypeface(font);
+        Variables.LEADER_BOARD_BUTTON.setText("\u2605");
         Variables.SETTINGS_LAYOUT = (RelativeLayout) findViewById(R.id.settingsLayout);
         Variables.GAME_STARTED = false;
         Display display = getWindowManager().getDefaultDisplay();
