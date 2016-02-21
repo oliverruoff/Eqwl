@@ -114,6 +114,8 @@ public class TimeView extends View {
 
         if (Variables.TIME_CIRCLE_DP <= 0) {
             Variables.GAME_STARTED = false;
+            Variables.CALC_ONE_VIEW.setText(Variables.CURRENT_TASK.calcOne.calcString + " = " + (int) Variables.CURRENT_TASK.calcOne.result);
+            Variables.CALC_TWO_VIEW.setText(Variables.CURRENT_TASK.calcTwo.calcString + " = " + (int) Variables.CURRENT_TASK.calcTwo.result);
             new Style(context, null).fadeInButtons();
         }
         invalidate();

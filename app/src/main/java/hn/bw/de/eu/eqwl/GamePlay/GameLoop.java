@@ -45,6 +45,8 @@ public class GameLoop implements View.OnClickListener {
     public void endGame() {
         Variables.GAME_STARTED = false;
         Variables.TIME_CIRCLE_DP = 0;
+        Variables.CALC_ONE_VIEW.setText(Variables.CURRENT_TASK.calcOne.calcString + " = " + (int) Variables.CURRENT_TASK.calcOne.result);
+        Variables.CALC_TWO_VIEW.setText(Variables.CURRENT_TASK.calcTwo.calcString + " = " + (int) Variables.CURRENT_TASK.calcTwo.result);
         style.fadeInButtons();
         //Toast.makeText(context, ":(", Toast.LENGTH_SHORT).show();
     }
@@ -84,7 +86,7 @@ public class GameLoop implements View.OnClickListener {
             }
         }
         if (v.getId() == R.id.settingsButton) {
-            Intent settingsIntent = new Intent(context,SettingsActivity.class);
+            Intent settingsIntent = new Intent(context, SettingsActivity.class);
             context.startActivity(settingsIntent);
         }
         if (v.getId() == R.id.leaderBoardButton) {
