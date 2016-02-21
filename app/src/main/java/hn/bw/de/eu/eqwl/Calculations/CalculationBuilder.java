@@ -162,7 +162,7 @@ public class CalculationBuilder {
                         }
                         break;
                 }
-                calcString = "( " + (int) randomNumber1 + " " + numberToOperator(randomOperator) + " " + (int) randomNumber2 + " ) " + numberToOperator(randomOperator2) + " " + (int) randomNumber3;
+                calcString = "(" + (int) randomNumber1 + " " + numberToOperator(randomOperator) + " " + (int) randomNumber2 + ") " + numberToOperator(randomOperator2) + " " + (int) randomNumber3;
                 calc = new Calculation(calcString, result, randomNumber1, randomNumber2, randomNumber3, randomOperator, randomOperator2);
             }
 

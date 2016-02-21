@@ -106,7 +106,7 @@ public class TimeView extends View {
 
     private void countDown() {
         try {
-            Thread.sleep(20);
+            Thread.sleep(15);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
