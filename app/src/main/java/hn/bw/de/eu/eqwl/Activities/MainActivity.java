@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import hn.bw.de.eu.eqwl.GamePlay.GameLoop;
+import hn.bw.de.eu.eqwl.Helper.SoundPlayer;
 import hn.bw.de.eu.eqwl.R;
 import hn.bw.de.eu.eqwl.Static.SaveNLoad;
 import hn.bw.de.eu.eqwl.Helper.Style;
@@ -56,6 +57,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Variables.AGAIN_BUTTON.setText("Go");
         style.fadeInButtons();
         style.animateTaskIn();
+        if (Variables.SOUND_ACTIVATED) {
+            Variables.SOUND_PLAYER = new SoundPlayer(this);
+        }
     }
 
     @Override
@@ -63,7 +67,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onPause();
         Variables.GAME_STARTED = false;
         Variables.SCORE = 0;
-        Variables.SCORE_VIEW.setText(""+Variables.SCORE);
+        Variables.SCORE_VIEW.setText("" + Variables.SCORE);
     }
 
     private void setListener() {

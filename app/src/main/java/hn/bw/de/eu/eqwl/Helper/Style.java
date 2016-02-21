@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 
 import hn.bw.de.eu.eqwl.GamePlay.GameLoop;
@@ -192,7 +193,7 @@ public class Style {
         for (int i = 0; i < mainLayout.getChildCount(); i++) {
             Drawable drawableButton = context.getResources().getDrawable(R.drawable.circle);
             drawableButton.setColorFilter(new ColorHelper().getIntFromColor(Color.red(Variables.COLOR) - 20, Color.green(Variables.COLOR) - 20, Color.blue(Variables.COLOR) - 20), PorterDuff.Mode.SRC_IN);
-            if (mainLayout.getChildAt(i) instanceof Button) {
+            if (mainLayout.getChildAt(i) instanceof Button && !(mainLayout.getChildAt(i) instanceof CheckBox)) {
                 mainLayout.getChildAt(i).setBackground(drawableButton);
             }
         }

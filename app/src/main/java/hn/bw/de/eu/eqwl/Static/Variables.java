@@ -5,6 +5,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import hn.bw.de.eu.eqwl.Calculations.Task;
+import hn.bw.de.eu.eqwl.Helper.SoundPlayer;
 import hn.bw.de.eu.eqwl.Helper.Style;
 
 /**
@@ -31,4 +32,6 @@ public class Variables {
     public static boolean PLAYED_ALREADY = false;
     public static int COLOR = -15019115;
     public static RelativeLayout SETTINGS_LAYOUT;
+    public static boolean SOUND_ACTIVATED = true;
+    public static SoundPlayer SOUND_PLAYER;
 }

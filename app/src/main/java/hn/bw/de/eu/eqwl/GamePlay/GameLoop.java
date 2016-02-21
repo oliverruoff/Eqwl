@@ -38,6 +38,9 @@ public class GameLoop implements View.OnClickListener {
     }
 
     public void nextRound() {
+        if (Variables.SOUND_ACTIVATED) {
+            Variables.SOUND_PLAYER.playRight();
+        }
         Variables.FILL_TIME_CIRCLE = true;
         Variables.SCORE++;
         Variables.SCORE_VIEW.setText(String.valueOf(Variables.SCORE));
@@ -46,6 +49,9 @@ public class GameLoop implements View.OnClickListener {
     }
 
     public void endGame() {
+        if (Variables.SOUND_ACTIVATED) {
+            Variables.SOUND_PLAYER.playWrong();
+        }
         Variables.GAME_STARTED = false;
         Variables.TIME_CIRCLE_DP = 0;
         Variables.CALC_ONE_VIEW.setText(Variables.CURRENT_TASK.calcOne.calcString + " = " + (int) Variables.CURRENT_TASK.calcOne.result);

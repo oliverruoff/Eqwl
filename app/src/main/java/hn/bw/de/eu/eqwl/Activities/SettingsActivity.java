@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 
 import hn.bw.de.eu.eqwl.Helper.HSVColorPickerDialog;
@@ -21,6 +22,7 @@ public class SettingsActivity extends ActionBarActivity implements View.OnClickL
     private Style style;
     private static String TAG = "SettingsActivity";
     private SaveNLoad saveNLoad = SaveNLoad.getReference();
+    private CheckBox soundCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,19 @@ public class SettingsActivity extends ActionBarActivity implements View.OnClickL
 
         style = new Style(this, (RelativeLayout) findViewById(R.id.settingsLayout));
         setColors();
+        initVariables();
         setListeners();
+        setCechkBox();
+    }
+
+    private void initVariables() {
+        soundCheckBox = (CheckBox) findViewById(R.id.soundCheckBox);
+    }
+
+    private void setCechkBox() {
+        if (!Variables.SOUND_ACTIVATED) {
+            soundCheckBox.setChecked(false);
+        }
     }
 
     private void setListeners() {
@@ -43,8 +57,21 @@ public class SettingsActivity extends ActionBarActivity implements View.OnClickL
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_settings, menu);
+//        getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (soundCheckBox.isChecked()) {
+            Variables.SOUND_ACTIVATED = true;
+            saveNLoad.setSoundActivated(true);
+        } else {
+            Variables.SOUND_ACTIVATED = false;
+            saveNLoad.setSoundActivated(false);
+        }
+        saveNLoad.saveMainPrefs();
     }
 
     @Override
@@ -52,12 +79,12 @@ public class SettingsActivity extends ActionBarActivity implements View.OnClickL
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
