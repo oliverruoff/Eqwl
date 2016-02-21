@@ -27,7 +27,6 @@ public class Variables {
     public static float DISPLAY_WIDTH;
     public static float DISPLAY_HEIGHT;
     public static Style STYLE;
-    public static boolean FILLING_TIME_CIRCLE = false;
     public static boolean FILL_TIME_CIRCLE = false;
     public static boolean PLAYED_ALREADY = false;
     public static int COLOR = -15019115;

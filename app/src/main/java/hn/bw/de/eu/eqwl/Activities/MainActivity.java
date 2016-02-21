@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,8 +53,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         style.setColors(getWindow());
         Variables.CALC_ONE_VIEW.setText("Equal...");
         Variables.CALC_TWO_VIEW.setText("Or Not?");
+        Variables.AGAIN_BUTTON.setText("Go");
         style.fadeInButtons();
         style.animateTaskIn();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Variables.GAME_STARTED = false;
+        Variables.SCORE = 0;
+        Variables.SCORE_VIEW.setText(""+Variables.SCORE);
     }
 
     private void setListener() {
