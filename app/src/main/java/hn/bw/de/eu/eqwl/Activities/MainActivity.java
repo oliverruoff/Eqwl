@@ -13,8 +13,17 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+
 import hn.bw.de.eu.eqwl.GamePlay.GameLoop;
 import hn.bw.de.eu.eqwl.Helper.SoundPlayer;
+import hn.bw.de.eu.eqwl.Helper.WriteReader;
 import hn.bw.de.eu.eqwl.R;
 import hn.bw.de.eu.eqwl.Static.SaveNLoad;
 import hn.bw.de.eu.eqwl.Helper.Style;
@@ -29,13 +38,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        try {
+            setContentView(R.layout.activity_main);
 
-        prepareSaveNLoad();
-        initVariables();
-        setListener();
-        style = new Style(this, Variables.MAINLAYOUT);
-        style.setColors(getWindow());
+            prepareSaveNLoad();
+            initVariables();
+            setListener();
+            style = new Style(this, Variables.MAINLAYOUT);
+            style.setColors(getWindow());
+            new WriteReader(this).writeToFile("Let the bodies hit the floor","Eqwl_test_file");
+        } catch (Exception e) {
+            Writer writer = new StringWriter();
+            PrintWriter printWriter = new PrintWriter(writer);
+            e.printStackTrace(printWriter);
+            String s = writer.toString();
+            new WriteReader(this).writeToFile(s,"Eqwl_Exceptions");
+            Log.d(TAG, "Wrote Logfile!");
+        }
     }
 
     private void prepareSaveNLoad() {

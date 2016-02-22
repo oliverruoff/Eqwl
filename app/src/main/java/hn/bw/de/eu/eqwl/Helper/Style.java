@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -13,6 +14,10 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import hn.bw.de.eu.eqwl.GamePlay.GameLoop;
 import hn.bw.de.eu.eqwl.R;
@@ -79,7 +84,17 @@ public class Style {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (Variables.PLAYED_ALREADY) {
-                    new GameLoop(context).showNewTask();
+                    try {
+                        new GameLoop(context).showNewTask();
+                    }
+                    catch (Exception e) {
+                        Writer writer = new StringWriter();
+                        PrintWriter printWriter = new PrintWriter(writer);
+                        e.printStackTrace(printWriter);
+                        String s = writer.toString();
+                        new WriteReader(context).writeToFile(s,"Eqwl_Exceptions");
+                        Log.d(TAG, "Wrote Logfile!");
+                    }
                     Variables.ANIMATING = false;
                 } else {
                     Variables.CALC_ONE_VIEW.setText("Equal...");

@@ -5,11 +5,18 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+
 import hn.bw.de.eu.eqwl.Activities.SettingsActivity;
 import hn.bw.de.eu.eqwl.Calculations.CalculationBuilder;
 import hn.bw.de.eu.eqwl.Calculations.Task;
 import hn.bw.de.eu.eqwl.Helper.RandomNumberHelper;
 import hn.bw.de.eu.eqwl.Helper.Style;
+import hn.bw.de.eu.eqwl.Helper.WriteReader;
 import hn.bw.de.eu.eqwl.R;
 import hn.bw.de.eu.eqwl.Static.Variables;
 
@@ -74,33 +81,33 @@ public class GameLoop implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //Log.d(TAG, "Clicked: "+v.getId());
-        if (Variables.GAME_STARTED && !Variables.ANIMATING) {
-            if (v.getId() == R.id.equalButton) {
-                if (Variables.CURRENT_TASK.equal) {
-                    nextRound();
-                } else {
-                    endGame();
-                }
-            } else if (v.getId() == R.id.unequalButton) {
-                if (!Variables.CURRENT_TASK.equal) {
-                    nextRound();
+            if (Variables.GAME_STARTED && !Variables.ANIMATING) {
+                if (v.getId() == R.id.equalButton) {
+                    if (Variables.CURRENT_TASK.equal) {
+                        nextRound();
+                    } else {
+                        endGame();
+                    }
+                } else if (v.getId() == R.id.unequalButton) {
+                    if (!Variables.CURRENT_TASK.equal) {
+                        nextRound();
 
-                } else {
-                    endGame();
+                    } else {
+                        endGame();
+                    }
                 }
             }
-        }
-        if (v.getId() == R.id.againButton) {
-            if (!Variables.ANIMATING) {
-                againPressed();
+            if (v.getId() == R.id.againButton) {
+                if (!Variables.ANIMATING) {
+                    againPressed();
+                }
             }
-        }
-        if (v.getId() == R.id.settingsButton) {
-            Intent settingsIntent = new Intent(context, SettingsActivity.class);
-            context.startActivity(settingsIntent);
-        }
-        if (v.getId() == R.id.leaderBoardButton) {
+            if (v.getId() == R.id.settingsButton) {
+                Intent settingsIntent = new Intent(context, SettingsActivity.class);
+                context.startActivity(settingsIntent);
+            }
+            if (v.getId() == R.id.leaderBoardButton) {
 
-        }
+            }
     }
 }
