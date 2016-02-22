@@ -28,8 +28,8 @@ public class SoundPlayer {
         } else {
             createOldSoundPool();
         }
-        rightSound = soundPool.load(context, R.raw.right, 1);
-        wrongSound = soundPool.load(context, R.raw.wrong, 1);
+        rightSound = soundPool.load(context, R.raw.right2, 1);
+        wrongSound = soundPool.load(context, R.raw.wrong2, 1);
     }
 
     public void playRight() {
