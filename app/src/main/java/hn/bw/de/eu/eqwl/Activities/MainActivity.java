@@ -46,7 +46,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             setListener();
             style = new Style(this, Variables.MAINLAYOUT);
             style.setColors(getWindow());
-            new WriteReader(this).writeToFile("Let the bodies hit the floor","Eqwl_test_file");
         } catch (Exception e) {
             Writer writer = new StringWriter();
             PrintWriter printWriter = new PrintWriter(writer);
