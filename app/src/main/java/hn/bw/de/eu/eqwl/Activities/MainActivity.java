@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -41,6 +43,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         try {
             setContentView(R.layout.activity_main);
 
+            final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Eqwl/" );
+            Log.d(TAG, "Path for logfile: " + dir.toString());
             prepareSaveNLoad();
             initVariables();
             setListener();

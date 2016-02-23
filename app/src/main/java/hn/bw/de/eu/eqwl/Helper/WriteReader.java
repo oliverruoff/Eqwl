@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 /**
  * Created by Oliver on 22.02.2016.
@@ -31,7 +30,7 @@ public class WriteReader {
 
         try {
             final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Eqwl/" );
-            Log.d(TAG,"Path for logfile: "+dir.toString());
+            Log.d(TAG,"Writing logfile to path for logfile: "+dir.toString());
             if (!dir.exists())
             {
                 dir.mkdirs();
