@@ -19,6 +19,7 @@ import java.io.OutputStreamWriter;
 public class WriteReader {
 
     private Context context;
+    private static String TAG = "WriteReader";
 
     public WriteReader(Context context) {
         this.context = context;
@@ -30,7 +31,7 @@ public class WriteReader {
 
         try {
             final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Eqwl/" );
-
+            Log.d(TAG,"Path for logfile: "+dir.toString());
             if (!dir.exists())
             {
                 dir.mkdirs();
