@@ -62,13 +62,13 @@ public class GameLoop implements View.OnClickListener {
         }
         Variables.GAME_STARTED = false;
         Variables.TIME_CIRCLE_DP = 0;
-        if (Variables.CURRENT_TASK != null) {
+        if (Variables.CURRENT_TASK.calcTwo.calcString != null) {
             Variables.CALC_ONE_VIEW.setText(Variables.CURRENT_TASK.calcOne.calcString + " = " + (int) Variables.CURRENT_TASK.calcOne.result);
             Variables.CALC_TWO_VIEW.setText(Variables.CURRENT_TASK.calcTwo.calcString + " = " + (int) Variables.CURRENT_TASK.calcTwo.result);
         }   else{
             Variables.CALC_ONE_VIEW.setText("Equal...");
             Variables.CALC_TWO_VIEW.setText("Or Not?");
-            Log.d(TAG,"Fail!! CURRENT_TASK IS NULL!");
+            Log.d(TAG,"Fail!! CURRENT_TASK.calcTwo.calcString IS NULL!");
         }
 
         Variables.AGAIN_BUTTON.setText("\u27F2");
