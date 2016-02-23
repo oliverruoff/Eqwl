@@ -157,7 +157,7 @@
         android:fontFamily="sans-serif-light"
         android:text=""
         android:textColor="#FFFFFF"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/settingsButton"

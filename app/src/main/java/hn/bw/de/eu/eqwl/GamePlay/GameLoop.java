@@ -2,22 +2,16 @@ package hn.bw.de.eu.eqwl.GamePlay;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.audiofx.Equalizer;
 import android.util.Log;
 import android.view.View;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
+import com.google.android.gms.games.Games;
 
 import hn.bw.de.eu.eqwl.Activities.SettingsActivity;
 import hn.bw.de.eu.eqwl.Calculations.CalculationBuilder;
 import hn.bw.de.eu.eqwl.Calculations.Task;
 import hn.bw.de.eu.eqwl.Helper.RandomNumberHelper;
 import hn.bw.de.eu.eqwl.Helper.Style;
-import hn.bw.de.eu.eqwl.Helper.WriteReader;
 import hn.bw.de.eu.eqwl.R;
 import hn.bw.de.eu.eqwl.Static.Variables;
 
@@ -99,7 +93,6 @@ public class GameLoop implements View.OnClickListener {
                 } else if (v.getId() == R.id.unequalButton) {
                     if (!Variables.CURRENT_TASK.equal) {
                         nextRound();
-
                     } else {
                         endGame();
                     }
@@ -115,7 +108,8 @@ public class GameLoop implements View.OnClickListener {
                 context.startActivity(settingsIntent);
             }
             if (v.getId() == R.id.leaderBoardButton) {
-
+//              context.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
+//                          LEADERBOARD_ID), REQUEST_LEADERBOARD);
             }
     }
 }
