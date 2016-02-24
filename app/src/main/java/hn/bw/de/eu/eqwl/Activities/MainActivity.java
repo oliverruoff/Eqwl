@@ -39,8 +39,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         try {
             setContentView(R.layout.activity_main);
 
-            final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Eqwl/" );
-            Log.d(TAG, "Path for logfile: " + dir.toString());
             prepareSaveNLoad();
             initVariables();
             setListener();

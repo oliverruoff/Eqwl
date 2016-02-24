@@ -34,8 +34,13 @@ public class GameLoop implements View.OnClickListener {
     public void showNewTask() {
         Task t = cB.getRandomTask();
         Variables.CURRENT_TASK = t;
-        Variables.CALC_ONE_VIEW.setText(t.calcOne.calcString); // + " = " + (int) t.calcOne.result
-        Variables.CALC_TWO_VIEW.setText(t.calcTwo.calcString); //  +" = " + (int) t.calcTwo.result
+        if (t.calcTwo != null) {
+            Variables.CALC_ONE_VIEW.setText(t.calcOne.calcString); // + " = " + (int) t.calcOne.result
+            Variables.CALC_TWO_VIEW.setText(t.calcTwo.calcString); //  +" = " + (int) t.calcTwo.result
+        } else {
+            Log.d(TAG, "Fail! t.calcTwo is null!! Retrying to get complete task.");
+            showNewTask();
+        }
 //        Log.d(TAG, "result one: " + (int) t.calcOne.result + " | result two: " + (int) t.calcTwo.result);
     }
 
@@ -56,13 +61,13 @@ public class GameLoop implements View.OnClickListener {
         }
         Variables.GAME_STARTED = false;
         Variables.TIME_CIRCLE_DP = 0;
-        if (Variables.CURRENT_TASK.calcTwo.calcString != null) {
+        if (Variables.CURRENT_TASK.calcTwo != null) {
             Variables.CALC_ONE_VIEW.setText(Variables.CURRENT_TASK.calcOne.calcString + " = " + (int) Variables.CURRENT_TASK.calcOne.result);
             Variables.CALC_TWO_VIEW.setText(Variables.CURRENT_TASK.calcTwo.calcString + " = " + (int) Variables.CURRENT_TASK.calcTwo.result);
-        }   else{
+        } else {
             Variables.CALC_ONE_VIEW.setText("Equal...");
             Variables.CALC_TWO_VIEW.setText("Or Not?");
-            Log.d(TAG,"Fail!! CURRENT_TASK.calcTwo.calcString IS NULL!");
+            Log.d(TAG, "Fail!! CURRENT_TASK.calcTwo IS NULL!");
         }
 
         Variables.AGAIN_BUTTON.setText("\u27F2");
@@ -83,33 +88,33 @@ public class GameLoop implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //Log.d(TAG, "Clicked: "+v.getId());
-            if (Variables.GAME_STARTED && !Variables.ANIMATING) {
-                if (v.getId() == R.id.equalButton) {
-                    if (Variables.CURRENT_TASK.equal) {
-                        nextRound();
-                    } else {
-                        endGame();
-                    }
-                } else if (v.getId() == R.id.unequalButton) {
-                    if (!Variables.CURRENT_TASK.equal) {
-                        nextRound();
-                    } else {
-                        endGame();
-                    }
+        if (Variables.GAME_STARTED && !Variables.ANIMATING) {
+            if (v.getId() == R.id.equalButton) {
+                if (Variables.CURRENT_TASK.equal) {
+                    nextRound();
+                } else {
+                    endGame();
+                }
+            } else if (v.getId() == R.id.unequalButton) {
+                if (!Variables.CURRENT_TASK.equal) {
+                    nextRound();
+                } else {
+                    endGame();
                 }
             }
-            if (v.getId() == R.id.againButton) {
-                if (!Variables.ANIMATING) {
-                    againPressed();
-                }
+        }
+        if (v.getId() == R.id.againButton) {
+            if (!Variables.ANIMATING) {
+                againPressed();
             }
-            if (v.getId() == R.id.settingsButton) {
-                Intent settingsIntent = new Intent(context, SettingsActivity.class);
-                context.startActivity(settingsIntent);
-            }
-            if (v.getId() == R.id.leaderBoardButton) {
+        }
+        if (v.getId() == R.id.settingsButton) {
+            Intent settingsIntent = new Intent(context, SettingsActivity.class);
+            context.startActivity(settingsIntent);
+        }
+        if (v.getId() == R.id.leaderBoardButton) {
 //              context.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,
 //                          LEADERBOARD_ID), REQUEST_LEADERBOARD);
-            }
+        }
     }
 }

@@ -100,64 +100,64 @@ public class CalculationBuilder {
                     case (0):
                         switch (randomOperator2) {
                             case (0):
-                                currentResult = ((int)(randomNumber1 + randomNumber2)) + randomNumber3;
+                                currentResult = (randomNumber1 + randomNumber2) + randomNumber3;
                                 break;
                             case (1):
-                                currentResult = ((int)(randomNumber1 + randomNumber2)) - randomNumber3;
+                                currentResult = (randomNumber1 + randomNumber2) - randomNumber3;
                                 break;
                             case (2):
-                                currentResult = ((int)(randomNumber1 + randomNumber2)) * randomNumber3;
+                                currentResult = (randomNumber1 + randomNumber2) * randomNumber3;
                                 break;
                             case (3):
-                                currentResult = ((int)(randomNumber1 + randomNumber2)) / randomNumber3;
+                                currentResult = (randomNumber1 + randomNumber2) / randomNumber3;
                                 break;
                         }
                         break;
                     case (1):
                         switch (randomOperator2) {
                             case (0):
-                                currentResult = ((int)(randomNumber1 - randomNumber2)) + randomNumber3;
+                                currentResult = (randomNumber1 - randomNumber2) + randomNumber3;
                                 break;
                             case (1):
-                                currentResult = ((int)(randomNumber1 - randomNumber2)) - randomNumber3;
+                                currentResult = (randomNumber1 - randomNumber2) - randomNumber3;
                                 break;
                             case (2):
-                                currentResult = ((int)(randomNumber1 - randomNumber2)) * randomNumber3;
+                                currentResult = (randomNumber1 - randomNumber2) * randomNumber3;
                                 break;
                             case (3):
-                                currentResult = ((int)(randomNumber1 - randomNumber2)) / randomNumber3;
+                                currentResult = (randomNumber1 - randomNumber2) / randomNumber3;
                                 break;
                         }
                         break;
                     case (2):
                         switch (randomOperator2) {
                             case (0):
-                                currentResult = ((int)(randomNumber1 * randomNumber2)) + randomNumber3;
+                                currentResult = (randomNumber1 * randomNumber2) + randomNumber3;
                                 break;
                             case (1):
-                                currentResult = ((int)(randomNumber1 * randomNumber2)) - randomNumber3;
+                                currentResult = (randomNumber1 * randomNumber2) - randomNumber3;
                                 break;
                             case (2):
-                                currentResult = ((int)(randomNumber1 * randomNumber2)) * randomNumber3;
+                                currentResult = (randomNumber1 * randomNumber2) * randomNumber3;
                                 break;
                             case (3):
-                                currentResult = ((int)(randomNumber1 * randomNumber2)) / randomNumber3;
+                                currentResult = (randomNumber1 * randomNumber2) / randomNumber3;
                                 break;
                         }
                         break;
                     case (3):
                         switch (randomOperator2) {
                             case (0):
-                                currentResult = ((int)(randomNumber1 / randomNumber2)) + randomNumber3;
+                                currentResult = (randomNumber1 / randomNumber2) + randomNumber3;
                                 break;
                             case (1):
-                                currentResult = ((int)(randomNumber1 / randomNumber2)) - randomNumber3;
+                                currentResult = (randomNumber1 / randomNumber2) - randomNumber3;
                                 break;
                             case (2):
-                                currentResult = ((int)(randomNumber1 / randomNumber2)) * randomNumber3;
+                                currentResult = (randomNumber1 / randomNumber2) * randomNumber3;
                                 break;
                             case (3):
-                                currentResult = ((int)(randomNumber1 / randomNumber2)) / randomNumber3;
+                                currentResult = (randomNumber1 / randomNumber2) / randomNumber3;
                                 break;
                         }
                         break;
