@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 
+import hn.bw.de.eu.eqwl.Helper.ColorHelper;
 import hn.bw.de.eu.eqwl.Helper.HSVColorPickerDialog;
 import hn.bw.de.eu.eqwl.R;
 import hn.bw.de.eu.eqwl.Static.SaveNLoad;
@@ -100,7 +101,25 @@ public class SettingsActivity extends ActionBarActivity implements View.OnClickL
 
     @Override
     public void colorSelected(Integer color) {
-        Log.d(TAG, "Color (R | G | B ) selected: " + Color.red(color) + " | " + Color.green(color) + " | " + Color.blue(color) + " INT -> " + color);
+        Log.d(TAG, "Chosen Color (R | G | B ) selected: " + Color.red(color) + " | " + Color.green(color) + " | " + Color.blue(color) + " INT -> " + color);
+        int newRed = Color.red(color), newGreen = Color.green(color), newBlue = Color.blue(color);
+        if (newRed > 225) {
+            newRed = 225;
+        } else if (newRed < 30) {
+            newRed = 30;
+        }
+        if (newGreen > 225) {
+            newGreen = 225;
+        } else if (newGreen < 30) {
+            newGreen = 30;
+        }
+        if (newBlue > 225) {
+            newBlue = 225;
+        } else if (newBlue < 30) {
+            newBlue = 30;
+        }
+        color = new ColorHelper().getIntFromColor(newRed, newGreen, newBlue);
+        Log.d(TAG, "Taken Color (R | G | B ) selected: " + Color.red(color) + " | " + Color.green(color) + " | " + Color.blue(color) + " INT -> " + color);
         Variables.COLOR = color;
         new Style(this, (RelativeLayout) findViewById(R.id.settingsLayout)).setColors(getWindow());
         saveNLoad.setColor(color);

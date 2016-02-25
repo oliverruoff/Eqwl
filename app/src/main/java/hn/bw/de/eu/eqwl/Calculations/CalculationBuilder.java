@@ -19,7 +19,7 @@ public class CalculationBuilder {
         Calculation a;
         Calculation b = null;
         Task t;
-        float result = rNH.getRandomNumberInt((int) (1 + (0.5 * Variables.SCORE)), 10 + Variables.SCORE);
+        int result = rNH.getRandomNumberInt((int) (1 + (0.5 * Variables.SCORE)), 10 + Variables.SCORE);
         a = getCalcForResult(result);
         if (rNH.getRandomNumberInt(0, 100) > 50) {
             boolean foundOtherCalculation = false;
@@ -47,7 +47,7 @@ public class CalculationBuilder {
     private Calculation getCalcForResult(float result) {
         String calcString = "";
         Calculation calc = null;
-        float currentResult = -1;
+        float currentResult = -1.5f;
         float randomNumber1 = 0;
         float randomNumber2 = 0;
         float randomNumber3 = 0;

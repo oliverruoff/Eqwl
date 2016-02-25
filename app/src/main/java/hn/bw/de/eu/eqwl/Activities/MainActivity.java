@@ -20,6 +20,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 import hn.bw.de.eu.eqwl.GamePlay.GameLoop;
+import hn.bw.de.eu.eqwl.Helper.LogWriter;
 import hn.bw.de.eu.eqwl.Helper.SoundPlayer;
 import hn.bw.de.eu.eqwl.Helper.Style;
 import hn.bw.de.eu.eqwl.Helper.WriteReader;
@@ -45,12 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             style = new Style(this, Variables.MAINLAYOUT);
             style.setColors(getWindow());
         } catch (Exception e) {
-            Writer writer = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(writer);
-            e.printStackTrace(printWriter);
-            String s = writer.toString();
-            new WriteReader(this).writeToFile(s,"Eqwl_Exceptions");
-            Log.d(TAG, "Wrote Logfile!");
+            new LogWriter().writeStackTraceToLog(this,e);
         }
     }
 
