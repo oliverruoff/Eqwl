@@ -31,4 +31,15 @@
         android:checked="true"
         android:text="Sounds"
         android:textColor="#FFFFFF" />
+
+    <CheckBox
+        android:id="@+id/equalsSwitchCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/soundCheckBox"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:checked="false"
+        android:text="Un/Equal Buttons Switched"
+        android:textColor="#FFFFFF" />
 </RelativeLayout>

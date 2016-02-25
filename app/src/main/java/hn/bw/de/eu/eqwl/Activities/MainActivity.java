@@ -10,6 +10,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 import hn.bw.de.eu.eqwl.GamePlay.GameLoop;
+import hn.bw.de.eu.eqwl.GamePlay.TimeView;
 import hn.bw.de.eu.eqwl.Helper.LogWriter;
 import hn.bw.de.eu.eqwl.Helper.SoundPlayer;
 import hn.bw.de.eu.eqwl.Helper.Style;
@@ -46,7 +48,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             style = new Style(this, Variables.MAINLAYOUT);
             style.setColors(getWindow());
         } catch (Exception e) {
-            new LogWriter().writeStackTraceToLog(this,e);
+            new LogWriter().writeStackTraceToLog(this, e);
         }
     }
 
@@ -71,6 +73,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         style.animateTaskIn();
         if (Variables.SOUND_ACTIVATED) {
             Variables.SOUND_PLAYER = new SoundPlayer(this);
+        }
+        if (Variables.EQUAL_BUTTONS_SWITCHED) {
+            Button equalButton = (Button) findViewById(R.id.equalButton);
+            equalButton.setText("≠");
+            Button unequalButton = (Button) findViewById(R.id.unequalButton);
+            unequalButton.setText("=");
+        }   else {
+            Button equalButton = (Button) findViewById(R.id.equalButton);
+            equalButton.setText("=");
+            Button unequalButton = (Button) findViewById(R.id.unequalButton);
+            unequalButton.setText("≠");
         }
     }
 
@@ -113,6 +126,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Variables.DISPLAY_HEIGHT = height;
         Variables.DISPLAY_WIDTH = width;
         Variables.STYLE = style;
+
+        final TimeView view = (TimeView) findViewById(R.id.timeView);
+        final ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    Variables.TIME_CIRCLE_PX_MAX = view.getWidth() / 2;
+                    Variables.TIME_CIRCLE_PX_1PERCENT = view.getWidth() / 100 / 2;
+                }
+            });
+        }
     }
 
     @Override

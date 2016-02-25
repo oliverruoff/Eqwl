@@ -59,19 +59,19 @@ public class TimeView extends View {
             failPaint.setColor(cH.getIntFromColor(Color.red(Variables.COLOR) + 30, Color.green(Variables.COLOR) - 20, Color.blue(Variables.COLOR) - 20));
         }
         //Log.d(TAG,"GameStarted: "+Variables.GAME_STARTED+" | PlayAgain: "+Variables.FILL_TIME_CIRCLE +" | CircleDP: "+Variables.TIME_CIRCLE_DP);
-        canvas.drawCircle(centerX, centerY, dPH.convertDpToPixel(BACKGROUND_CIRCLE_RADIUS_DP), backgroundPaint);
+        canvas.drawCircle(centerX, centerY, Variables.TIME_CIRCLE_PX_MAX, backgroundPaint);
         if (!rendererAtLeastOneFrame) {
             rendererAtLeastOneFrame = true;
             calcCircleParams();
         }
         if (Variables.GAME_STARTED && !Variables.FILL_TIME_CIRCLE) {
-            canvas.drawCircle(centerX, centerY, dPH.convertDpToPixel(Variables.TIME_CIRCLE_DP), foregroundPaint);
+            canvas.drawCircle(centerX, centerY, Variables.TIME_CIRCLE_PX, foregroundPaint);
             countDown();
         } else if (Variables.GAME_STARTED && Variables.FILL_TIME_CIRCLE) {
             fillTimeCircle(canvas);
         } else {
             // Waits for game to start
-            canvas.drawCircle(centerX, centerY, dPH.convertDpToPixel(40), failPaint);
+            canvas.drawCircle(centerX, centerY, Variables.TIME_CIRCLE_PX_MAX, failPaint);
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -82,13 +82,13 @@ public class TimeView extends View {
     }
 
     public void fillTimeCircle(Canvas canvas) {
-        if (Variables.TIME_CIRCLE_DP >= 40) {
-            Variables.TIME_CIRCLE_DP = 40;
+        if (Variables.TIME_CIRCLE_PX >= Variables.TIME_CIRCLE_PX_MAX) {
+            Variables.TIME_CIRCLE_PX = Variables.TIME_CIRCLE_PX_MAX;
             Variables.FILL_TIME_CIRCLE = false;
-            canvas.drawCircle(centerX, centerY, dPH.convertDpToPixel(Variables.TIME_CIRCLE_DP), foregroundPaint);
+            canvas.drawCircle(centerX, centerY, Variables.TIME_CIRCLE_PX, foregroundPaint);
         } else {
-            Variables.TIME_CIRCLE_DP++;
-            canvas.drawCircle(centerX, centerY, dPH.convertDpToPixel(Variables.TIME_CIRCLE_DP), foregroundPaint);
+            Variables.TIME_CIRCLE_PX += Variables.TIME_CIRCLE_PX_1PERCENT * 4;
+            canvas.drawCircle(centerX, centerY, Variables.TIME_CIRCLE_PX, foregroundPaint);
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -106,13 +106,13 @@ public class TimeView extends View {
 
     private void countDown() {
         try {
-            Thread.sleep(15);
+            Thread.sleep(17);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Variables.TIME_CIRCLE_DP -= 0.2f;
+        Variables.TIME_CIRCLE_PX -= Variables.TIME_CIRCLE_PX_1PERCENT;
 
-        if (Variables.TIME_CIRCLE_DP <= 0) {
+        if (Variables.TIME_CIRCLE_PX <= 0) {
             Variables.GAME_STARTED = false;
             Variables.CALC_ONE_VIEW.setText(Variables.CURRENT_TASK.calcOne.calcString + " = " + (int) Variables.CURRENT_TASK.calcOne.result);
             Variables.CALC_TWO_VIEW.setText(Variables.CURRENT_TASK.calcTwo.calcString + " = " + (int) Variables.CURRENT_TASK.calcTwo.result);

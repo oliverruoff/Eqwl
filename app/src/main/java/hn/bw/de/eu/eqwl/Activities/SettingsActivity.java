@@ -23,7 +23,7 @@ public class SettingsActivity extends ActionBarActivity implements View.OnClickL
     private Style style;
     private static String TAG = "SettingsActivity";
     private SaveNLoad saveNLoad = SaveNLoad.getReference();
-    private CheckBox soundCheckBox;
+    private CheckBox soundCheckBox, equalsSwitchCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +34,20 @@ public class SettingsActivity extends ActionBarActivity implements View.OnClickL
         setColors();
         initVariables();
         setListeners();
-        setCechkBox();
+        setCheckBox();
     }
 
     private void initVariables() {
         soundCheckBox = (CheckBox) findViewById(R.id.soundCheckBox);
+        equalsSwitchCheckBox = (CheckBox) findViewById(R.id.equalsSwitchCheckBox);
     }
 
-    private void setCechkBox() {
+    private void setCheckBox() {
         if (!Variables.SOUND_ACTIVATED) {
             soundCheckBox.setChecked(false);
+        }
+        if (Variables.EQUAL_BUTTONS_SWITCHED) {
+            equalsSwitchCheckBox.setChecked(true);
         }
     }
 
@@ -71,6 +75,13 @@ public class SettingsActivity extends ActionBarActivity implements View.OnClickL
         } else {
             Variables.SOUND_ACTIVATED = false;
             saveNLoad.setSoundActivated(false);
+        }
+        if (equalsSwitchCheckBox.isChecked()) {
+            Variables.EQUAL_BUTTONS_SWITCHED = true;
+            saveNLoad.setEqualsButtonsSwitched(true);
+        } else {
+            Variables.EQUAL_BUTTONS_SWITCHED = false;
+            saveNLoad.setEqualsButtonsSwitched(false);
         }
         saveNLoad.saveMainPrefs();
     }

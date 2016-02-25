@@ -55,7 +55,7 @@ public class GameLoop implements View.OnClickListener {
             Variables.SOUND_PLAYER.playWrong();
         }
         Variables.GAME_STARTED = false;
-        Variables.TIME_CIRCLE_DP = 0;
+        Variables.TIME_CIRCLE_PX = 0;
         Variables.CALC_ONE_VIEW.setText(Variables.CURRENT_TASK.calcOne.calcString + " = " + (int) Variables.CURRENT_TASK.calcOne.result);
         Variables.CALC_TWO_VIEW.setText(Variables.CURRENT_TASK.calcTwo.calcString + " = " + (int) Variables.CURRENT_TASK.calcTwo.result);
 
@@ -78,17 +78,33 @@ public class GameLoop implements View.OnClickListener {
     public void onClick(View v) {
         //Log.d(TAG, "Clicked: "+v.getId());
         if (Variables.GAME_STARTED && !Variables.ANIMATING) {
-            if (v.getId() == R.id.equalButton) {
-                if (Variables.CURRENT_TASK.equal) {
-                    nextRound();
-                } else {
-                    endGame();
+            if (!Variables.EQUAL_BUTTONS_SWITCHED) {
+                if (v.getId() == R.id.equalButton) {
+                    if (Variables.CURRENT_TASK.equal) {
+                        nextRound();
+                    } else {
+                        endGame();
+                    }
+                } else if (v.getId() == R.id.unequalButton) {
+                    if (!Variables.CURRENT_TASK.equal) {
+                        nextRound();
+                    } else {
+                        endGame();
+                    }
                 }
-            } else if (v.getId() == R.id.unequalButton) {
-                if (!Variables.CURRENT_TASK.equal) {
-                    nextRound();
-                } else {
-                    endGame();
+            } else {
+                if (v.getId() == R.id.equalButton) {
+                    if (Variables.CURRENT_TASK.equal) {
+                        endGame();
+                    } else {
+                        nextRound();
+                    }
+                } else if (v.getId() == R.id.unequalButton) {
+                    if (!Variables.CURRENT_TASK.equal) {
+                        endGame();
+                    } else {
+                        nextRound();
+                    }
                 }
             }
         }

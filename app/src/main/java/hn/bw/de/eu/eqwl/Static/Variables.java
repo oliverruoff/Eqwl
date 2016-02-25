@@ -24,7 +24,9 @@ public class Variables {
     public static int SCORE = 0;
     public static boolean GAME_STARTED = false;
     public static Task CURRENT_TASK;
-    public static float TIME_CIRCLE_DP = 0;
+    public static float TIME_CIRCLE_PX = 0;
+    public static float TIME_CIRCLE_PX_MAX = 0;
+    public static float TIME_CIRCLE_PX_1PERCENT = 0;
     public static float DISPLAY_WIDTH;
     public static float DISPLAY_HEIGHT;
     public static Style STYLE;
@@ -34,4 +36,5 @@ public class Variables {
     public static RelativeLayout SETTINGS_LAYOUT;
     public static boolean SOUND_ACTIVATED = true;
     public static SoundPlayer SOUND_PLAYER;
+    public static boolean EQUAL_BUTTONS_SWITCHED = false;
 }

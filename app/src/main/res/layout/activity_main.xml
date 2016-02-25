@@ -168,6 +168,7 @@
         android:layout_alignRight="@+id/timeView"
         android:background="@drawable/circle"
         android:elevation="10dp"
+        android:layout_marginBottom="10dp"
         android:text=""
         android:textColor="#FFFFFF"
         android:textSize="17sp" />
@@ -180,6 +181,7 @@
         android:layout_alignStart="@+id/scoreTextView"
         android:layout_alignTop="@+id/settingsButton"
         android:background="@drawable/circle"
+        android:layout_marginBottom="10dp"
         android:elevation="10dp"
         android:fontFamily="sans-serif-light"
         android:text=""

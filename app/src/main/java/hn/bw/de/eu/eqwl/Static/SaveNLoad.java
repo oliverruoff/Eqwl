@@ -18,6 +18,15 @@ public class SaveNLoad {
     private SharedPreferences.Editor mainEditor;
     private int color = -15019115;
     private boolean soundActivated = true;
+    private boolean equalsButtonsSwitched = false;
+
+    public boolean isEqualsButtonsSwitched() {
+        return equalsButtonsSwitched;
+    }
+
+    public void setEqualsButtonsSwitched(boolean equalsButtonsSwitched) {
+        this.equalsButtonsSwitched = equalsButtonsSwitched;
+    }
 
     public boolean isSoundActivated() {
         return soundActivated;
@@ -76,6 +85,13 @@ public class SaveNLoad {
             mainEditor.putString("soundActivated",
                     "0");
         }
+        if (equalsButtonsSwitched) {
+            mainEditor.putString("equalsButtonsSwitched",
+                    "1");
+        } else {
+            mainEditor.putString("equalsButtonsSwitched",
+                    "0");
+        }
         mainEditor.commit();
     }
 
@@ -100,6 +116,15 @@ public class SaveNLoad {
             } else {
                 soundActivated = false;
                 Variables.SOUND_ACTIVATED = false;
+            }
+        }
+        if (mainPrefsMap.containsKey("equalsButtonsSwitched")) {
+            if (mainPrefsMap.get("equalsButtonsSwitched").equals("1")) {
+                equalsButtonsSwitched = true;
+                Variables.EQUAL_BUTTONS_SWITCHED = true;
+            } else {
+                equalsButtonsSwitched = false;
+                Variables.EQUAL_BUTTONS_SWITCHED = false;
             }
         }
 
