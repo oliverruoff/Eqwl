@@ -79,7 +79,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             equalButton.setText("≠");
             Button unequalButton = (Button) findViewById(R.id.unequalButton);
             unequalButton.setText("=");
-        }   else {
+        } else {
             Button equalButton = (Button) findViewById(R.id.equalButton);
             equalButton.setText("=");
             Button unequalButton = (Button) findViewById(R.id.unequalButton);
@@ -134,8 +134,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 @Override
                 public void onGlobalLayout() {
                     view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    Variables.TIME_CIRCLE_PX_MAX = view.getWidth() / 2;
-                    Variables.TIME_CIRCLE_PX_1PERCENT = view.getWidth() / 100 / 2;
+                    Variables.TIME_CIRCLE_PX_MAX = view.getWidth() / 2f;
+                    Variables.TIME_CIRCLE_PX_1PERCENT = view.getWidth() / 100f / 2f;
                 }
             });
         }

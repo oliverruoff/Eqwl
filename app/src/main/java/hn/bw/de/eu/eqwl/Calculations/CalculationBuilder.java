@@ -171,7 +171,7 @@ public class CalculationBuilder {
             allTrysForTask++;
         }
 
-        Log.d(TAG, "Found task @ " + allTrysForTask + " trys: " + calcString);
+        Log.d(TAG, "Found calculation @ " + allTrysForTask + " tries: " + calcString);
         return calc;
     }
 

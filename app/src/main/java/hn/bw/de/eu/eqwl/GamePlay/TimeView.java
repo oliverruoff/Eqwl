@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import hn.bw.de.eu.eqwl.Helper.ColorHelper;
@@ -24,7 +25,7 @@ public class TimeView extends View {
     private DensityPixelHelper dPH;
     private boolean rendererAtLeastOneFrame = false;
     private float centerX, centerY;
-    private static float BACKGROUND_CIRCLE_RADIUS_DP = 40;
+    private int timeToCountDown = 27;
     private ColorHelper cH;
     private int color;
 
@@ -53,6 +54,11 @@ public class TimeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         this.canvas = canvas;
+//        Log.d(TAG, "Fill Time Circle: " + Variables.FILL_TIME_CIRCLE +
+//                " | CurrentPX: " + Variables.TIME_CIRCLE_PX +
+//                " | Max PX: " + Variables.TIME_CIRCLE_PX_MAX +
+//                " | Percent: " + Variables.TIME_CIRCLE_PX_1PERCENT +
+//                " | Game started: " + Variables.GAME_STARTED);
         if (color != Variables.COLOR) {
             backgroundPaint.setColor(cH.getIntFromColor(Color.red(Variables.COLOR) + 30, Color.green(Variables.COLOR) + 30, Color.blue(Variables.COLOR) + 30));
             foregroundPaint.setColor(cH.getIntFromColor(Color.red(Variables.COLOR) - 20, Color.green(Variables.COLOR) - 20, Color.blue(Variables.COLOR) - 20));
@@ -106,7 +112,7 @@ public class TimeView extends View {
 
     private void countDown() {
         try {
-            Thread.sleep(17);
+            Thread.sleep(timeToCountDown);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
