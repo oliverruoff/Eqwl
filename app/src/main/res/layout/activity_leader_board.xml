@@ -25,4 +25,13 @@
         android:text="Sign Out"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/openLeaderBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/sign_in_button"
+        android:layout_alignRight="@+id/sign_in_button"
+        android:layout_below="@+id/sign_in_button"
+        android:text="Show Leaderboard" />
+
 </RelativeLayout>

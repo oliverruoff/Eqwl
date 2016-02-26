@@ -1,11 +1,10 @@
 package hn.bw.de.eu.eqwl.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,22 +14,19 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
+import com.google.android.gms.games.Games;
 
+import hn.bw.de.eu.eqwl.BaseGame.BaseGameActivity;
 import hn.bw.de.eu.eqwl.GamePlay.GameLoop;
 import hn.bw.de.eu.eqwl.GamePlay.TimeView;
 import hn.bw.de.eu.eqwl.Helper.LogWriter;
 import hn.bw.de.eu.eqwl.Helper.SoundPlayer;
 import hn.bw.de.eu.eqwl.Helper.Style;
-import hn.bw.de.eu.eqwl.Helper.WriteReader;
 import hn.bw.de.eu.eqwl.R;
 import hn.bw.de.eu.eqwl.Static.SaveNLoad;
 import hn.bw.de.eu.eqwl.Static.Variables;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends BaseGameActivity implements View.OnClickListener {
 
     private static String TAG = "MainActivity";
     private Style style;
@@ -99,8 +95,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.equalButton).setOnClickListener(new GameLoop(this));
         findViewById(R.id.unequalButton).setOnClickListener(new GameLoop(this));
         Variables.AGAIN_BUTTON.setOnClickListener(new GameLoop(this));
-        Variables.SETTINGS_BUTTON.setOnClickListener(new GameLoop(this));
-        Variables.LEADER_BOARD_BUTTON.setOnClickListener(new GameLoop(this));
+        Variables.SETTINGS_BUTTON.setOnClickListener(this);
+        Variables.LEADER_BOARD_BUTTON.setOnClickListener(this);
     }
 
     private void initVariables() {
@@ -165,7 +161,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
+        if (v.getId() == R.id.settingsButton) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            this.startActivity(settingsIntent);
+        }
+        if (v.getId() == R.id.leaderBoardButton) {
+            Games.Leaderboards.submitScore(getApiClient(),
+                    getString(R.string.leaderboard_leaderboard),
+                    Variables.SCORE);
+            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+                            getApiClient(), getString(R.string.leaderboard_leaderboard)),
+                    1);
+        }
     }
 
+    @Override
+    public void onSignInFailed() {
+    }
+
+    @Override
+    public void onSignInSucceeded() {
+    }
 }
