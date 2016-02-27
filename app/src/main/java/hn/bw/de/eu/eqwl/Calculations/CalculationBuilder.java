@@ -19,7 +19,7 @@ public class CalculationBuilder {
         Calculation a;
         Calculation b = null;
         Task t;
-        float result = rNH.getRandomNumberInt((int) (1 + (0.5 * Variables.SCORE)), 10 + Variables.SCORE);
+        int result = rNH.getRandomNumberInt((int) (1 + (0.5 * Variables.SCORE)), 10 + Variables.SCORE);
         a = getCalcForResult(result);
         if (rNH.getRandomNumberInt(0, 100) > 50) {
             boolean foundOtherCalculation = false;
@@ -32,7 +32,7 @@ public class CalculationBuilder {
 
             t = new Task(a, b, true);
         } else {
-            float randomResultModifier = rNH.getRandomNumberInt(1, 7);
+            float randomResultModifier = rNH.getRandomNumberInt(1, 4);
             if (rNH.getRandomNumberInt(0, 100) > 50) {
                 result += randomResultModifier;
             } else {
@@ -46,14 +46,18 @@ public class CalculationBuilder {
 
     private Calculation getCalcForResult(float result) {
         String calcString = "";
-        float currentResult = -1;
+        Calculation calc = null;
+        float currentResult = -1.5f;
         float randomNumber1 = 0;
         float randomNumber2 = 0;
-        int minNumberReducer = 0;
+        float randomNumber3 = 0;
+        float minNumberReducer = 0;
         int calcTrys = 0;
         int allTrysForTask = 0;
         int minNumber = 0;
+        int calcWithBrackets = 0;
         int randomOperator = rNH.getRandomNumberInt(0, 4);
+        int randomOperator2 = 0;
         while (currentResult != result) {
             if ((int) (1 + (0.5 * Variables.SCORE) - minNumberReducer) > 0) {
                 minNumber = (int) (1 + (0.5 * Variables.SCORE) - minNumberReducer);
@@ -69,27 +73,105 @@ public class CalculationBuilder {
                 randomOperator = rNH.getRandomNumberInt(0, 4);
                 calcTrys = 0;
             }
-            switch (randomOperator) {
-                case (0):
-                    currentResult = randomNumber1 + randomNumber2;
-                    break;
-                case (1):
-                    currentResult = randomNumber1 - randomNumber2;
-                    break;
-                case (2):
-                    currentResult = randomNumber1 * randomNumber2;
-                    break;
-                case (3):
-                    currentResult = randomNumber1 / randomNumber2;
-                    break;
+            if (Variables.SCORE > 10) {
+                calcWithBrackets = rNH.getRandomNumberInt(0, 100);
             }
+            if (calcWithBrackets < 50) {
+                switch (randomOperator) {
+                    case (0):
+                        currentResult = randomNumber1 + randomNumber2;
+                        break;
+                    case (1):
+                        currentResult = randomNumber1 - randomNumber2;
+                        break;
+                    case (2):
+                        currentResult = randomNumber1 * randomNumber2;
+                        break;
+                    case (3):
+                        currentResult = randomNumber1 / randomNumber2;
+                        break;
+                }
+                calcString = (int) randomNumber1 + " " + numberToOperator(randomOperator) + " " + (int) randomNumber2;
+                calc = new Calculation(calcString, result, randomNumber1, randomNumber2, -1, randomOperator, -1);
+            } else {
+                randomNumber3 = rNH.getRandomNumberInt(1, Variables.SCORE / 2);
+                randomOperator2 = rNH.getRandomNumberInt(0, 4);
+                switch (randomOperator) {
+                    case (0):
+                        switch (randomOperator2) {
+                            case (0):
+                                currentResult = (randomNumber1 + randomNumber2) + randomNumber3;
+                                break;
+                            case (1):
+                                currentResult = (randomNumber1 + randomNumber2) - randomNumber3;
+                                break;
+                            case (2):
+                                currentResult = (randomNumber1 + randomNumber2) * randomNumber3;
+                                break;
+                            case (3):
+                                currentResult = (randomNumber1 + randomNumber2) / randomNumber3;
+                                break;
+                        }
+                        break;
+                    case (1):
+                        switch (randomOperator2) {
+                            case (0):
+                                currentResult = (randomNumber1 - randomNumber2) + randomNumber3;
+                                break;
+                            case (1):
+                                currentResult = (randomNumber1 - randomNumber2) - randomNumber3;
+                                break;
+                            case (2):
+                                currentResult = (randomNumber1 - randomNumber2) * randomNumber3;
+                                break;
+                            case (3):
+                                currentResult = (randomNumber1 - randomNumber2) / randomNumber3;
+                                break;
+                        }
+                        break;
+                    case (2):
+                        switch (randomOperator2) {
+                            case (0):
+                                currentResult = (randomNumber1 * randomNumber2) + randomNumber3;
+                                break;
+                            case (1):
+                                currentResult = (randomNumber1 * randomNumber2) - randomNumber3;
+                                break;
+                            case (2):
+                                currentResult = (randomNumber1 * randomNumber2) * randomNumber3;
+                                break;
+                            case (3):
+                                currentResult = (randomNumber1 * randomNumber2) / randomNumber3;
+                                break;
+                        }
+                        break;
+                    case (3):
+                        switch (randomOperator2) {
+                            case (0):
+                                currentResult = (randomNumber1 / randomNumber2) + randomNumber3;
+                                break;
+                            case (1):
+                                currentResult = (randomNumber1 / randomNumber2) - randomNumber3;
+                                break;
+                            case (2):
+                                currentResult = (randomNumber1 / randomNumber2) * randomNumber3;
+                                break;
+                            case (3):
+                                currentResult = (randomNumber1 / randomNumber2) / randomNumber3;
+                                break;
+                        }
+                        break;
+                }
+                calcString = "(" + (int) randomNumber1 + " " + numberToOperator(randomOperator) + " " + (int) randomNumber2 + ") " + numberToOperator(randomOperator2) + " " + (int) randomNumber3;
+                calc = new Calculation(calcString, result, randomNumber1, randomNumber2, randomNumber3, randomOperator, randomOperator2);
+            }
+
             calcTrys++;
-            minNumberReducer++;
+            minNumberReducer += 0.4f;
             allTrysForTask++;
         }
-        calcString = (int) randomNumber1 + " " + numberToOperator(randomOperator) + " " + (int) randomNumber2;
-        Calculation calc = new Calculation(calcString, result, randomNumber1, randomNumber2, randomOperator);
-        Log.d(TAG, "Found task @ " + allTrysForTask + " trys: " + calcString);
+
+        Log.d(TAG, "Found calculation @ " + allTrysForTask + " tries: " + calcString);
         return calc;
     }
 

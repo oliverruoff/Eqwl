@@ -189,8 +189,8 @@ public class HSVColorPickerDialog extends AlertDialog {
 				canvas.drawBitmap(bitmap, null, rect, null);
 				float hueInPiInterval = colorHsv[0] / 180f * (float)Math.PI;
 				
-				selectedPoint.x = rect.left + (int) (-FloatMath.cos( hueInPiInterval ) * colorHsv[1] * innerCircleRadius + fullCircleRadius);
-				selectedPoint.y = rect.top + (int) (-FloatMath.sin( hueInPiInterval ) * colorHsv[1] * innerCircleRadius + fullCircleRadius);
+				selectedPoint.x = rect.left + (int) (-Math.cos( hueInPiInterval ) * colorHsv[1] * innerCircleRadius + fullCircleRadius);
+				selectedPoint.y = rect.top + (int) (-Math.sin( hueInPiInterval ) * colorHsv[1] * innerCircleRadius + fullCircleRadius);
 				
 				canvas.drawLine( selectedPoint.x - pointerLength, selectedPoint.y, selectedPoint.x + pointerLength, selectedPoint.y, pointerPaint );
 				canvas.drawLine( selectedPoint.x, selectedPoint.y - pointerLength, selectedPoint.x, selectedPoint.y + pointerLength, pointerPaint );
