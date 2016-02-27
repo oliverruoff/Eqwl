@@ -25,7 +25,7 @@ public class TimeView extends View {
     private DensityPixelHelper dPH;
     private boolean rendererAtLeastOneFrame = false;
     private float centerX, centerY;
-    private int timeToCountDown = 27;
+    private int timeToCountDown = 22;
     private ColorHelper cH;
     private int color;
 
@@ -116,7 +116,7 @@ public class TimeView extends View {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Variables.TIME_CIRCLE_PX -= Variables.TIME_CIRCLE_PX_1PERCENT;
+        Variables.TIME_CIRCLE_PX -= Variables.TIME_CIRCLE_PX_1PERCENT/2;
 
         if (Variables.TIME_CIRCLE_PX <= 0) {
             Variables.GAME_STARTED = false;

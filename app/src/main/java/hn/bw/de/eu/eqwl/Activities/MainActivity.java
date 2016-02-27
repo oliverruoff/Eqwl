@@ -35,17 +35,17 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            setContentView(R.layout.activity_main);
+//        try { In Manifest Permission wieder einfügen (Write external storage)
+//            setContentView(R.layout.activity_main);
 
             prepareSaveNLoad();
             initVariables();
             setListener();
             style = new Style(this, Variables.MAINLAYOUT);
             style.setColors(getWindow());
-        } catch (Exception e) {
-            new LogWriter().writeStackTraceToLog(this, e);
-        }
+//        } catch (Exception e) {
+//            new LogWriter().writeStackTraceToLog(this, e);
+//        }
     }
 
     private void prepareSaveNLoad() {
