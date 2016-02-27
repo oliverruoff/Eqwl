@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +37,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        try { In Manifest Permission wieder einfügen (Write external storage)
-//            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main);
 
             prepareSaveNLoad();
             initVariables();
