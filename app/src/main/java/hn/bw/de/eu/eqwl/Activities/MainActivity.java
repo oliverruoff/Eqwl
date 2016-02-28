@@ -14,7 +14,9 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 
 import hn.bw.de.eu.eqwl.BaseGame.BaseGameActivity;
@@ -37,13 +39,13 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        try { In Manifest Permission wieder einfügen (Write external storage)
-            setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-            prepareSaveNLoad();
-            initVariables();
-            setListener();
-            style = new Style(this, Variables.MAINLAYOUT);
-            style.setColors(getWindow());
+        prepareSaveNLoad();
+        initVariables();
+        setListener();
+        style = new Style(this, Variables.MAINLAYOUT);
+        style.setColors(getWindow());
 //        } catch (Exception e) {
 //            new LogWriter().writeStackTraceToLog(this, e);
 //        }
@@ -167,12 +169,16 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
             this.startActivity(settingsIntent);
         }
         if (v.getId() == R.id.leaderBoardButton) {
-            Games.Leaderboards.submitScore(getApiClient(),
-                    getString(R.string.leaderboard_leaderboard),
-                    Variables.SCORE);
-            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-                            getApiClient(), getString(R.string.leaderboard_leaderboard)),
-                    1);
+            if (getApiClient().isConnected()) {
+                Games.Leaderboards.submitScore(getApiClient(),
+                        getString(R.string.leaderboard_leaderboard),
+                        Variables.SCORE);
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+                                getApiClient(), getString(R.string.leaderboard_leaderboard)),
+                        1);
+            } else {
+                Toast.makeText(this, "No connection, or play games not installed.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
